@@ -1,5 +1,6 @@
 ﻿using Alerts.Model;
 using Microsoft.Win32;
+using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -16,6 +17,10 @@ namespace Alerts
     class Methods
     {
 
+        private static Microsoft.Win32.TaskScheduler.Task task;
+
+
+        private static Microsoft.Win32.TaskScheduler.TaskDefinition td;
 
         [DllImport("user32")]
         public static extern void LockWorkStation();
@@ -82,46 +87,50 @@ namespace Alerts
             }
         }
 
-        public static bool SetAutorunValue(bool autorun)
+
+        public static void SetAutorunValue(bool autorun)
         {
-            string executablePath = Application.ExecutablePath;
-            var nameApp = "Alerts.exe";
-            RegistryKey reg;
-            reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            if (autorun)
-            {
-                if (reg.GetValue(nameApp) == null)
+
+          using (TaskService ts = new TaskService())
+           {
+                if(autorun)
                 {
-                    reg.SetValue(nameApp, executablePath);
-                    reg.Close();
-                    return true;
+                    td = ts.NewTask();
+                    td.RegistrationInfo.Description = "Запуск Alerts";
+
+                    td.Triggers.Add(new LogonTrigger());
+
+
+                    td.Actions.Add(new ExecAction(Application.ExecutablePath));
+                    td.Principal.RunLevel = TaskRunLevel.Highest;
+
+                    ts.RootFolder.RegisterTaskDefinition("Alerts", td);
                 }
+                else 
+                {
+                    ts.RootFolder.DeleteTask("Alerts");
+
+                }
+               
+           }
+
+        
+
+    }
+
+    public static bool CheckAutorun()
+        {
+
+
+            using (TaskService ts = new TaskService())
+            {
+                task = ts.GetTask("Alerts");
+
+                if (task != null)
+                    return true;
                 else
                     return false;
             }
-            else
-            {
-                if (reg.GetValue(nameApp) != null)
-                {
-                    reg.DeleteValue(nameApp);
-                    reg.Close();
-                    return true;
-                }
-                else
-                    return false;
-            }
-        }
-
-        public static bool CheckAutorun()
-        {
-            var nameApp = "Alerts.exe";
-            RegistryKey reg;
-            reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            if (reg.GetValue(nameApp) != null)
-                return true;
-            else
-                return false;
-
         }
 
 

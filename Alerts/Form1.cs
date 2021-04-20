@@ -1,6 +1,7 @@
 ﻿
 using Alerts.Model;
 using Microsoft.Win32;
+using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,7 +39,7 @@ namespace Alerts
 
         }
 
-  
+
 
 
         private void SaveAutorun(object sender, EventArgs e)
