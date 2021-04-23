@@ -4,6 +4,7 @@ using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -137,15 +138,21 @@ namespace Alerts
         public static void ScreenShot()
         {
 
-            if (!System.IO.Directory.Exists(@"SavedScreens\"))
+            if (!System.IO.Directory.Exists(@"C:\SavedScreens\"))
             {
-                System.IO.Directory.CreateDirectory(@"SavedScreens\");
+                System.IO.Directory.CreateDirectory(@"C:\SavedScreens\");
             }
-            string fileName = String.Format(@"SavedScreens\{0}.jpg", DateTime.Now.ToString().Replace(".", "_").Replace(":", "_"));
+            string fileName = String.Format(@"C:\SavedScreens\{0}.jpg", DateTime.Now.ToString().Replace(".", "_").Replace(":", "_"));
             Bitmap BM = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             Graphics GH = Graphics.FromImage(BM as Image);
             GH.CopyFromScreen(0, 0, 0, 0, BM.Size);
             BM.Save(fileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+            
+            //тест скриншота
+            MessageBox.Show(fileName);
+            Process.Start(new ProcessStartInfo(fileName) { UseShellExecute = true });
+            
+
 
         }
 

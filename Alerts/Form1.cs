@@ -21,7 +21,7 @@ namespace Alerts
 {
     public  partial class Form1 : Form
     {
-
+        private delegate void CallDelegate(Control control, string text);
 
         public  Form1()
         {
@@ -95,12 +95,6 @@ namespace Alerts
             alertWords.Lines = Methods.InitAlertWords();
         }
 
-        /*  private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-          {
-              Show();
-              WindowState = FormWindowState.Normal;
-          }*/
-
 
 
 
@@ -117,6 +111,19 @@ namespace Alerts
             Show();
             WindowState = FormWindowState.Normal;
         }
+
+        public void BufKeyFill(string[] items)
+        {
+            System.Action action = () => bufKey.Lines=items;
+            
+           
+            if (InvokeRequired)
+                Invoke(action);
+            else
+                action();
+
+        }
+
     }
 }
 

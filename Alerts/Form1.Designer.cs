@@ -36,10 +36,13 @@ namespace Alerts
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bufKey = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.saveAlertWordsBtn = new System.Windows.Forms.Button();
             this.alertWords = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.showScreen = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.saveAlertAppsBtn = new System.Windows.Forms.Button();
             this.alertApps = new System.Windows.Forms.TextBox();
@@ -47,6 +50,7 @@ namespace Alerts
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.showScreen)).BeginInit();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -61,18 +65,37 @@ namespace Alerts
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.bufKey);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.saveAlertWordsBtn);
             this.panel1.Controls.Add(this.alertWords);
             this.panel1.Location = new System.Drawing.Point(-2, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(397, 402);
+            this.panel1.Size = new System.Drawing.Size(625, 402);
             this.panel1.TabIndex = 1;
+            // 
+            // bufKey
+            // 
+            this.bufKey.Location = new System.Drawing.Point(25, 34);
+            this.bufKey.Name = "bufKey";
+            this.bufKey.Size = new System.Drawing.Size(328, 60);
+            this.bufKey.TabIndex = 5;
+            this.bufKey.Multiline = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(113, 15);
+            this.label3.TabIndex = 4;
+            this.label3.Text = " Буфер клавиатуры";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 16);
+            this.label1.Location = new System.Drawing.Point(25, 115);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 15);
             this.label1.TabIndex = 2;
@@ -90,14 +113,15 @@ namespace Alerts
             // 
             // alertWords
             // 
-            this.alertWords.Location = new System.Drawing.Point(25, 34);
+            this.alertWords.Location = new System.Drawing.Point(25, 133);
             this.alertWords.Multiline = true;
             this.alertWords.Name = "alertWords";
-            this.alertWords.Size = new System.Drawing.Size(328, 294);
+            this.alertWords.Size = new System.Drawing.Size(328, 195);
             this.alertWords.TabIndex = 0;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.showScreen);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.saveAlertAppsBtn);
             this.panel2.Controls.Add(this.alertApps);
@@ -106,10 +130,18 @@ namespace Alerts
             this.panel2.Size = new System.Drawing.Size(397, 402);
             this.panel2.TabIndex = 2;
             // 
+            // showScreen
+            // 
+            this.showScreen.Location = new System.Drawing.Point(35, 16);
+            this.showScreen.Name = "showScreen";
+            this.showScreen.Size = new System.Drawing.Size(153, 96);
+            this.showScreen.TabIndex = 3;
+            this.showScreen.TabStop = false;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 16);
+            this.label2.Location = new System.Drawing.Point(35, 115);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 15);
             this.label2.TabIndex = 2;
@@ -127,10 +159,10 @@ namespace Alerts
             // 
             // alertApps
             // 
-            this.alertApps.Location = new System.Drawing.Point(35, 34);
+            this.alertApps.Location = new System.Drawing.Point(35, 133);
             this.alertApps.Multiline = true;
             this.alertApps.Name = "alertApps";
-            this.alertApps.Size = new System.Drawing.Size(328, 294);
+            this.alertApps.Size = new System.Drawing.Size(328, 195);
             this.alertApps.TabIndex = 0;
             // 
             // saveAutorunBtn
@@ -166,6 +198,7 @@ namespace Alerts
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.showScreen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,6 +220,9 @@ namespace Alerts
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         public NotifyIcon notifyIcon1;
+        private Label label3;
+        public PictureBox showScreen;
+        public TextBox bufKey;
     }
 }
 
