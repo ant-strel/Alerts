@@ -12,5 +12,6 @@ namespace Alerts.Model
     {
         public static string Con = @"Data Source=AlertDB.db; Version=3;";
 
+
     }
 }

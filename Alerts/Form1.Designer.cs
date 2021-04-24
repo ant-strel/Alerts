@@ -42,7 +42,6 @@ namespace Alerts
             this.saveAlertWordsBtn = new System.Windows.Forms.Button();
             this.alertWords = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.showScreen = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.saveAlertAppsBtn = new System.Windows.Forms.Button();
             this.alertApps = new System.Windows.Forms.TextBox();
@@ -50,7 +49,6 @@ namespace Alerts
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.showScreen)).BeginInit();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -78,10 +76,10 @@ namespace Alerts
             // bufKey
             // 
             this.bufKey.Location = new System.Drawing.Point(25, 34);
+            this.bufKey.Multiline = true;
             this.bufKey.Name = "bufKey";
             this.bufKey.Size = new System.Drawing.Size(328, 60);
             this.bufKey.TabIndex = 5;
-            this.bufKey.Multiline = true;
             // 
             // label3
             // 
@@ -121,7 +119,6 @@ namespace Alerts
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.showScreen);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.saveAlertAppsBtn);
             this.panel2.Controls.Add(this.alertApps);
@@ -129,14 +126,6 @@ namespace Alerts
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(397, 402);
             this.panel2.TabIndex = 2;
-            // 
-            // showScreen
-            // 
-            this.showScreen.Location = new System.Drawing.Point(35, 16);
-            this.showScreen.Name = "showScreen";
-            this.showScreen.Size = new System.Drawing.Size(153, 96);
-            this.showScreen.TabIndex = 3;
-            this.showScreen.TabStop = false;
             // 
             // label2
             // 
@@ -198,7 +187,6 @@ namespace Alerts
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.showScreen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,7 +200,7 @@ namespace Alerts
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button saveAlertWordsBtn;
-        private System.Windows.Forms.TextBox alertWords;
+        public  System.Windows.Forms.TextBox alertWords;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button saveAlertAppsBtn;
         private System.Windows.Forms.TextBox alertApps;
@@ -221,8 +209,9 @@ namespace Alerts
         private System.Windows.Forms.Label label2;
         public NotifyIcon notifyIcon1;
         private Label label3;
-        public PictureBox showScreen;
         public TextBox bufKey;
+
+        
     }
 }
 

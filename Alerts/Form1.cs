@@ -124,6 +124,11 @@ namespace Alerts
 
         }
 
+        public string[] GetWords()
+        {
+            return alertWords.Lines;
+        }
+
     }
 }
 
